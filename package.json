@@ -1,0 +1,49 @@
+{
+  "name": "dsh-liangwengu",
+  "version": "0.3.2",
+  "description": "梁文谷 · DSH 谷价调度器：在 DeepSeek 谷价时段自动新建会话或向已有会话发送预先编写的内容，附带峰谷定价抓取、余额提醒与本机记账本，支持中英双语。",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "off-peak",
+    "scheduler"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "author": "梁文谷",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maqimakabaka/dsh-LiangWenGu.git"
+  },
+  "homepage": "https://github.com/maqimakabaka/dsh-LiangWenGu#readme",
+  "bugs": {
+    "url": "https://github.com/maqimakabaka/dsh-LiangWenGu/issues"
+  },
+  "files": [
+    "lib",
+    "assets",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": []
+    }
+  },
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

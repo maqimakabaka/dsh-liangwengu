@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: 语法与打包检查
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ["20", "22"]
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 准备 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 检查包描述文件
+        run: |
+          node -e "
+          const fs = require('node:fs');
+          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          const required = ['name', 'version', 'main', 'license', 'repository', 'files', 'exports'];
+          for (const key of required) {
+            if (!pkg[key]) { console.error('package.json 缺少字段: ' + key); process.exit(1); }
+          }
+          const dsh = pkg.dsh || {};
+          if (!dsh.bundle || !dsh.bundle.patch) { console.error('缺少 dsh.bundle.patch'); process.exit(1); }
+          if (!dsh.client || dsh.client.platform !== 'web') { console.error('缺少 dsh.client.platform = web'); process.exit(1); }
+          for (const entry of ['lib', 'cordis.patch.yml', 'README.md', 'LICENSE']) {
+            if (!pkg.files.includes(entry)) { console.error('files 缺少: ' + entry); process.exit(1); }
+          }
+          console.log('package.json 字段检查通过');
+          "
+
+      - name: 检查宿主半侧可加载
+        run: node --input-type=module -e "import('./lib/index.js').then((m) => { if (!m.default || typeof m.default.apply !== 'function') process.exit(1); console.log('宿主半侧可加载'); })"
+
+      - name: 检查浏览器半侧语法
+        run: node --check lib/client.js
+
+      - name: 检查 cordis 补丁
+        run: |
+          node -e "
+          const fs = require('node:fs');
+          const text = fs.readFileSync('cordis.patch.yml', 'utf8');
+          if (!text.includes('dsh-liangwengu')) { console.error('cordis.patch.yml 未引用插件包名'); process.exit(1); }
+          console.log('cordis.patch.yml 检查通过');
+          "
+
+      - name: 试打包
+        run: npm pack --dry-run
