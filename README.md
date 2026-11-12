@@ -1,4 +1,4 @@
-# dsh-LiangWenGu · 梁文谷
+# dsh-liangwengu · 梁文谷
 
 > DSH 谷价调度器：把「写好的指令」放到 DeepSeek 谷价时段自动发送，省下峰时那部分 token 费用。
 
@@ -49,7 +49,7 @@
 dsh plugin --profile <profile> add link:C:/Users/96596/dsh-liangwengu
 
 # 或者从 Git 仓库安装
-dsh plugin --profile <profile> add github:maqimakabaka/dsh-LiangWenGu
+dsh plugin --profile <profile> add github:maqimakabaka/dsh-liangwengu
 ```
 
 桌面端读取 `desktop` profile，安装后需要重启 DSH 才会加载插件。

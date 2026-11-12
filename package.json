@@ -15,11 +15,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maqimakabaka/dsh-LiangWenGu.git"
+    "url": "git+https://github.com/maqimakabaka/dsh-liangwengu.git"
   },
-  "homepage": "https://github.com/maqimakabaka/dsh-LiangWenGu#readme",
+  "homepage": "https://github.com/maqimakabaka/dsh-liangwengu#readme",
   "bugs": {
-    "url": "https://github.com/maqimakabaka/dsh-LiangWenGu/issues"
+    "url": "https://github.com/maqimakabaka/dsh-liangwengu/issues"
   },
   "files": [
     "lib",
