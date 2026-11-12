@@ -90,4 +90,4 @@ dsh-liangwengu/
 
 ## 许可
 
-MIT © 梁文谷
+MIT © maqimakabaka
