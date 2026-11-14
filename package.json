@@ -1,7 +1,7 @@
 {
   "name": "dsh-liangwengu",
-  "version": "0.3.2",
-  "description": "梁文谷 · DSH 谷价调度器：在 DeepSeek 谷价时段自动新建会话或向已有会话发送预先编写的内容，附带峰谷定价抓取、余额提醒与本机记账本，支持中英双语。",
+  "version": "0.3.12",
+  "description": "DeepSeek Harness 谷价调度插件：谷价时段自动发送排队指令，支持新建/历史会话、模型与权限选择、峰谷定价、余额告警、记账本与中英双语",
   "keywords": [
     "dsh",
     "dsh-plugin",
@@ -15,11 +15,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maqimakabaka/dsh-liangwengu.git"
+    "url": "git+https://github.com/maqimakabaka/dsh-LiangWenGu.git"
   },
-  "homepage": "https://github.com/maqimakabaka/dsh-liangwengu#readme",
+  "homepage": "https://github.com/maqimakabaka/dsh-LiangWenGu#readme",
   "bugs": {
-    "url": "https://github.com/maqimakabaka/dsh-liangwengu/issues"
+    "url": "https://github.com/maqimakabaka/dsh-LiangWenGu/issues"
   },
   "files": [
     "lib",
